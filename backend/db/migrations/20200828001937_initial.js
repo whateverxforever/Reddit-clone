@@ -1,5 +1,6 @@
 const Knex = require("knex");
 const tableNames = require("../../src/constants/tableNames");
+const orderedTableNames = require("../../src/constants/orderedTableNames");
 
 /**
  *
@@ -85,14 +86,9 @@ exports.up = async function (knex) {
  * @param {Knex} knex
  */
 exports.down = async function (knex) {
-  await Promise.all(
-    [
-      tableNames.users,
-      tableNames.subreddits,
-      tableNames.posts,
-      tableNames.comments,
-    ].map((tableName) => {
-      knex.schema.dropTable(tableName);
-    })
-  );
+  await orderedTableNames.reduce(async (promise, table) => {
+    await promise;
+    console.log(`Dropping table: ${table}`);
+    await knex.schema.dropTable(table);
+  }, Promise.resolve());
 };
