@@ -7,4 +7,8 @@ Clone of **Reddit** made using PostgreSQL
 - Install dependencies `npm install`
 - Create .env file with your db values `touch .env`
 - Run the docker container for postges `docker-compose up`
-- Run migrations do your db `npm run migrate`
+
+### Database
+
+- Run migrations to your db `npm run migrate`
+- Run seeding for your db `npm run seed`
