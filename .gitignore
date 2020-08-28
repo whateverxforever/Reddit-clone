@@ -5,5 +5,4 @@
 package-lock.json
 
 node_modules/
-db/
 db-data/
